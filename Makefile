@@ -16,6 +16,11 @@ run: install ts-node
 server: install
 	npm run dev
 
+## Build the project and validate if there are any errors
+.PHONY: build
+build: install
+	npm run build
+
 
 ## Display help for all targets
 .PHONY: help
