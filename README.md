@@ -1,2 +1,3 @@
-# matriculator
-pay half 
+## Getting Started
+
+`make help`
