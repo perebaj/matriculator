@@ -138,12 +138,14 @@ import * as path from "path";
   "pdfmeVersion": "4.0.0"
 };
   const plugins = { text, image, qrcode: barcodes.qrcode };
+  const access_code = generateAccessCode()
+  const ufscarID = generateUFSCARID()
   const inputs = [
   {
-    "codigo-acesso": "8EY12-YUHD3-27HDC-WEUDC-23DHC",
+    "codigo-acesso": access_code,
     "linkmatric": "https://siga.ufscar.br/doc",
     "name": "JONATHAN S SILVA",
-    "ufscarid": "759052",
+    "ufscarid": ufscarID,
     "datestart": "13/07/2024",
     "dateend": "31/12/2024"
   }
@@ -153,8 +155,26 @@ import * as path from "path";
 
   // Node.js
   fs.writeFileSync(path.join(__dirname, 'test.pdf'), pdf);
-
-  // Browser
-  // const blob = new Blob([pdf.buffer], { type: 'application/pdf' });
-  // window.open(URL.createObjectURL(blob));
 })();
+
+
+//generate a valid access code, formed by 5 groups of 5 characters each separated by a hyphen
+function generateAccessCode() {
+  const groups = Array.from({ length: 5 }, () => generateGroup());
+  return groups.join('-');
+}
+
+function generateGroup() {
+  return Array.from({ length: 5 }, () => randomChar()).join('');
+}
+
+function randomChar() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const index = Math.floor(Math.random() * chars.length);
+  return chars[index];
+}
+
+function generateUFSCARID() {
+  let randomNum = Math.floor(Math.random() * 100000);
+  return randomNum.toString()
+}
