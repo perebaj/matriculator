@@ -25,7 +25,7 @@ export default function Home() {
             Digite abaixo o <strong>Código de Acesso</strong> que pode ser encontrado no documento recebido.
           </p>
           <div className="flex items-center mb-4">
-            <Input type="text" placeholder="Código de Acesso" className="flex-1 mr-4" />
+            <Input type="text" placeholder="Código de Acesso: XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" className="flex-1 mr-4" />
             <Button className="bg-orange-500 text-white">OBTER CÓPIA</Button>
           </div>
           <p className="text-sm text-gray-500">

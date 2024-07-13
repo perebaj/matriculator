@@ -13,7 +13,7 @@ run: install ts-node
 
 ## Run the server locally
 .PHONY: local-server
-server: install
+local-server: install
 	npm run dev
 
 ## Build the project and validate if there are any errors
