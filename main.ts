@@ -144,12 +144,12 @@ import {format, addMonths, subDays} from 'date-fns';
   const ufscarID = generateUFSCARID()
   const startDate = subDays(new Date(), 1)
   const endDate = addMonths(startDate, 6)
-
+  const name = validateName('Marvin Dantas de Oli');
   const inputs = [
   {
     "codigo-acesso": access_code,
     "linkmatric": "https://siga.ufscar.br/doc",
-    "name": "JONATHAN S SILVA",
+    "name": name,
     "ufscarid": ufscarID,
     "datestart": formatDate(startDate),
     "dateend": formatDate(endDate),
@@ -186,4 +186,16 @@ function randomChar() {
 function generateUFSCARID() {
   let randomNum = Math.floor(Math.random() * 100000);
   return randomNum.toString()
+}
+
+//JONATHAN SANTOS SILVA
+// how many chars are in the name
+// 22
+
+// the name must have in upper case and have less than 24 chars
+function validateName(name: string) {
+  if (name.length > 22) {
+    throw new Error('Name is too long');
+  }
+  return name.toUpperCase();
 }
