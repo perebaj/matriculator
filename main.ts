@@ -2,6 +2,8 @@ import { text, image, barcodes } from "@pdfme/schemas";
 import { generate } from "@pdfme/generator";
 import * as fs from "fs";
 import * as path from "path";
+import {format, addMonths, subDays} from 'date-fns';
+
 (async () => {
   const template = {
   "schemas": [
@@ -140,14 +142,17 @@ import * as path from "path";
   const plugins = { text, image, qrcode: barcodes.qrcode };
   const access_code = generateAccessCode()
   const ufscarID = generateUFSCARID()
+  const startDate = subDays(new Date(), 1)
+  const endDate = addMonths(startDate, 6)
+
   const inputs = [
   {
     "codigo-acesso": access_code,
     "linkmatric": "https://siga.ufscar.br/doc",
     "name": "JONATHAN S SILVA",
     "ufscarid": ufscarID,
-    "datestart": "13/07/2024",
-    "dateend": "31/12/2024"
+    "datestart": formatDate(startDate),
+    "dateend": formatDate(endDate),
   }
 ];
 
@@ -157,6 +162,10 @@ import * as path from "path";
   fs.writeFileSync(path.join(__dirname, 'test.pdf'), pdf);
 })();
 
+
+function formatDate(date: Date): string {
+  return format(date, 'dd/MM/yyyy');
+}
 
 //generate a valid access code, formed by 5 groups of 5 characters each separated by a hyphen
 function generateAccessCode() {
