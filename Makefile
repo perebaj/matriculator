@@ -21,6 +21,10 @@ local-server: install
 build: install
 	npm run build
 
+## Run the linting tool and fix the errors. (Not work in the CI/CD pipeline)
+.PHONY: lint
+lint: install
+	npx eslint . --fix
 
 ## Display help for all targets
 .PHONY: help
